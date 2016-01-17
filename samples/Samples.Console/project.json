@@ -1,0 +1,35 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "Samples.Console Console Application",
+  "authors": [ "ncraver" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "compilationOptions": {
+    "emitEntryPoint": true
+  },
+  "dependencies": {
+    "StackExchange.Exceptional": {
+      "target": "project",
+      "version": "2.0.0-*"
+    }
+  },
+  "commands": {
+    "Samples.Console": "Samples.Console"
+  },
+  "frameworks": {
+    "net45": { },
+    "dotnet5.4": {
+      "compilationOptions": {
+        "define": [ "COREFX" ]
+      },
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-beta-23516",
+        "System.Collections": "4.0.11-beta-23516",
+        "System.Console": "4.0.0-beta-23516",
+        "System.Linq": "4.0.1-beta-23516",
+        "System.Threading": "4.0.11-beta-23516"
+      }
+    }
+  }
+}

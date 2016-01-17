@@ -1,0 +1,58 @@
+{
+  "authors": [ "Nick Craver" ],
+  "owners": [ "nick.craver" ],
+  "projectUrl": "https://github.com/NickCraver/StackExchange.Exceptional",
+  "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0",
+  "summary": ".Net Error handler used internally at Stack Exchange/Stack Overflow.  Primarily for logging all unhandled exceptions to SQL, but also supporting JSON and Memory based logging.",
+  "description": ".Net error handler for logging to SQL, JSON or Memory.",
+  "version": "2.0.0-alpha1",
+  "title": "StackExchange.Exceptional",
+  "tags": [ "SQL", "JSON", "Exception Handler", "Errors", "Stack Exchange Exceptional" ],
+  "copyright": "",
+  "dependencies": {
+    "Dapper": "1.50.0-*",
+    "Jil": "2.13.0-beta1"
+  },
+  "releaseNotes": "",
+  "compilationOptions": {
+    "warningsAsErrors": true
+  },
+  "frameworks": {
+    "net45": {
+      "compilationOptions": {
+        "define": [ ]
+      },
+      "frameworkAssemblies": {
+        "System.Configuration": "4.0.0.0",
+        "System.Data": "4.0.0.0",
+        "System.Transactions": "4.0.0.0",
+        "System.Web": "4.0.0.0",
+        "System.Xml": "4.0.0.0"
+      },
+      "dependencies": {
+      }
+    },
+    "dotnet5.4": {
+      "compilationOptions": {
+        "define": [ "COREFX" ]
+      },
+      "dependencies": {
+        "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
+        "Microsoft.Extensions.Configuration": "1.0.0-rc1-final",
+        "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
+        "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final",
+        "System.Runtime": "4.0.21-*",
+        "System.Diagnostics.StackTrace": "4.0.1-*",
+        "System.Collections": "4.0.11-*",
+        "System.Collections.Specialized": "4.0.1-*",
+        "System.Data.SqlClient": "4.0.0-beta-23516",
+        "System.IO.FileSystem": "4.0.1-*",
+        "System.Linq": "4.0.1-*",
+        "System.Reflection.TypeExtensions": "4.1.0-*",
+        "System.Text.RegularExpressions": "4.0.11-*",
+        "System.Threading.Thread": "4.0.0-*",
+        "System.Collections.NonGeneric": "4.0.1-*"
+      }
+    }
+  }
+}

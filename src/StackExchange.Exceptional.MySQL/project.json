@@ -1,0 +1,40 @@
+{
+  "authors": [ "Nick Craver" ],
+  "owners": [ "nick.craver" ],
+  "projectUrl": "https://github.com/NickCraver/StackExchange.Exceptional",
+  "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0",
+  "summary": "Enabled storing StackExchange.Exceptional errors to a MySQL database.",
+  "description": "MySQL storage provider for StackExchange.Exceptional.",
+  "version": "2.0.0-alpha1",
+  "title": "StackExchange.Exceptional.MySQL",
+  "tags": [ "MySQL", "Exception Handler", "Errors", "Stack Exchange Exceptional" ],
+  "copyright": "",
+  "dependencies": {
+    "Dapper": "1.50.0-*",
+    "StackExchange.Exceptional": {
+      "version": "2.0.0-*",
+      "target": "project"
+    },
+    "MySql.Data": "6.9.8"
+  },
+  "releaseNotes": "",
+  "compilationOptions": {
+    "warningsAsErrors": true
+  },
+  "frameworks": {
+    "net45": {
+      "compilationOptions": {
+        "define": [ ]
+      },
+      "frameworkAssemblies": {
+        "System.Configuration": "4.0.0.0",
+        "System.Data": "4.0.0.0",
+        "System.Transactions": "4.0.0.0",
+        "System.Web": "4.0.0.0",
+        "System.Xml": "4.0.0.0"
+      },
+      "dependencies": {
+      }
+    }
+  }
+}
