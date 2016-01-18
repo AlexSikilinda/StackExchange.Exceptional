@@ -6,7 +6,7 @@ using StackExchange.Exceptional.Extensions;
 
 namespace StackExchange.Exceptional.Pages
 {
-    internal class ErrorInfo : WebPage
+    public class ErrorInfo : WebPage
     {
         public override string PageTitle => "";
         public Guid Guid { get; set; }

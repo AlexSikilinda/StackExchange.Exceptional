@@ -5,7 +5,7 @@ using StackExchange.Exceptional.Extensions;
 
 namespace StackExchange.Exceptional.Pages
 {
-    internal class ErrorEmailPage : WebPage
+    public class ErrorEmailPage : WebPage
     {
         public override string PageTitle => "";
 

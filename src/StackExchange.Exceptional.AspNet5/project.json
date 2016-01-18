@@ -1,0 +1,58 @@
+﻿{
+  "authors": [ "Nick Craver" ],
+  "owners": [ "nick.craver" ],
+  "projectUrl": "https://github.com/NickCraver/StackExchange.Exceptional",
+  "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0",
+  "summary": "AspNet 5+ & MVC6+ adapter for StackExchange.Exceptional.",
+  "description": "AspNet 5+ & MVC6+ adapter for StackExchange.Exceptional.",
+  "version": "2.0.0-alpha1",
+  "title": "StackExchange.Exceptional.AspNet5",
+  "tags": [ "AspNet5", "MVC6", "SQL", "JSON", "Exception Handler", "Errors", "Stack Exchange Exceptional" ],
+  "copyright": "",
+  "dependencies": {
+    "Microsoft.AspNet.Http.Abstractions": "1.0.0-*",
+    "StackExchange.Exceptional": {
+      "version": "2.0.0-*",
+      "target": "project"
+    }
+  },
+  "releaseNotes": "",
+  "compilationOptions": {
+    "warningsAsErrors": true
+  },
+  "frameworks": {
+    "net451": {
+      "compilationOptions": {
+        "define": [ ]
+      },
+      "frameworkAssemblies": {
+        "System.Configuration": "4.0.0.0",
+        "System.Data": "4.0.0.0",
+        "System.Xml": "4.0.0.0"
+      },
+      "dependencies": {
+      }
+    },
+    "dotnet5.4": {
+      "compilationOptions": {
+        "define": [ "COREFX" ]
+      },
+      "dependencies": {
+        "Microsoft.Extensions.Configuration": "1.0.0-*",
+        "Microsoft.Extensions.Configuration.Json": "1.0.0-*",
+        "Microsoft.Extensions.PlatformAbstractions": "1.0.0-*",
+        "System.Runtime": "4.0.21-*",
+        "System.Diagnostics.StackTrace": "4.0.1-*",
+        "System.Collections": "4.0.11-*",
+        "System.Collections.Specialized": "4.0.1-*",
+        "System.Data.SqlClient": "4.0.0-beta-23516",
+        "System.IO.FileSystem": "4.0.1-*",
+        "System.Linq": "4.0.1-*",
+        "System.Reflection.TypeExtensions": "4.1.0-*",
+        "System.Text.RegularExpressions": "4.0.11-*",
+        "System.Threading.Thread": "4.0.0-*",
+        "System.Collections.NonGeneric": "4.0.1-*"
+      }
+    }
+  }
+}

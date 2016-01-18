@@ -9,13 +9,11 @@ using System.Threading;
 using StackExchange.Exceptional.Stores;
 using StackExchange.Exceptional.Extensions;
 #if COREFX
-using Microsoft.AspNet.Http;
 using Microsoft.Extensions.PlatformAbstractions;
 #else
 using System.Configuration;
 using System.IO;
 using System.Transactions;
-using System.Web;
 using StackExchange.Exceptional.Email;
 #endif
 
@@ -592,42 +590,41 @@ namespace StackExchange.Exceptional
             }
             return result;
         }
-
-        /// <summary>
-        /// For logging an exception with no HttpContext, most commonly used in non-web applications 
-        /// so that they don't have to carry a reference to System.Web
-        /// </summary>
-        /// <param name="ex">The exception to log</param>
-        /// <param name="appendFullStackTrace">Whether to append a full stack trace to the exception's detail</param>
-        /// <param name="rollupPerServer">Whether to log up per-server, e.g. errors are only duplicates if they have same stack on the same machine</param>
-        /// <param name="customData">Any custom data to store with the exception like UserId, etc...this will be rendered as JSON in the error view for script use</param>
-        public static Error LogExceptionWithoutContext(Exception ex, bool appendFullStackTrace = false, bool rollupPerServer = false, Dictionary<string, string> customData = null)
+        
+        public bool ShouldIgnore(Exception ex)
         {
-            return LogException(ex, null, appendFullStackTrace, rollupPerServer, customData);
+            if (IgnoreRegexes.Any(re => re.IsMatch(ex.ToString())))
+                return true;
+            if (IgnoreExceptions.Any(type => IsDescendentOf(ex.GetType(), type.ToString())))
+                return true;
+            return false;
         }
 
         /// <summary>
         /// Logs an exception to the configured error store, or the in-memory default store if none is configured
         /// </summary>
         /// <param name="ex">The exception to log</param>
-        /// <param name="context">The HTTPContext to record variables from.  If this isn't a web request, pass <see langword="null" /> in here</param>
         /// <param name="appendFullStackTrace">Whether to append a full stack trace to the exception's detail</param>
         /// <param name="rollupPerServer">Whether to log up per-server, e.g. errors are only duplicates if they have same stack on the same machine</param>
         /// <param name="customData">Any custom data to store with the exception like UserId, etc...this will be rendered as JSON in the error view for script use</param>
         /// <param name="applicationName">If specified, the application name to log with, if not specified the name in the config is used</param>
+        /// <param name="setProperties">Allows downstream providers to set properties, e.g. from a platform's HttpContext.</param>
         /// <returns>The Error created, if one was created and logged, null if nothing was logged</returns>
         /// <remarks>
         /// When dealing with a non web requests, pass <see langword="null" /> in for context.  
         /// It shouldn't be forgotten for most web application usages, so it's not an optional parameter.
         /// </remarks>
-        public static Error LogException(Exception ex, HttpContext context, bool appendFullStackTrace = false, bool rollupPerServer = false, Dictionary<string, string> customData = null, string applicationName = null)
+        public Error Log(Exception ex, 
+            bool appendFullStackTrace = false, 
+            bool rollupPerServer = false, 
+            Dictionary<string, string> customData = null, 
+            string applicationName = null,
+            Action<Error> setProperties = null)
         {
             if (!_enableLogging) return null;
             try
             {
-                if (IgnoreRegexes.Any(re => re.IsMatch(ex.ToString())))
-                    return null;
-                if (IgnoreExceptions.Any(type => IsDescendentOf(ex.GetType(), type.ToString())))
+                if (Default.ShouldIgnore(ex))
                     return null;
 
                 if (customData == null && GetCustomData != null)
@@ -635,7 +632,7 @@ namespace StackExchange.Exceptional
                     customData = new Dictionary<string, string>();
                     try
                     {
-                        GetCustomData(ex, context, customData);
+                        GetCustomData(ex, customData);
                     }
                     catch (Exception cde)
                     {
@@ -644,11 +641,15 @@ namespace StackExchange.Exceptional
                     }
                 }
 
-                var error = new Error(ex, context, applicationName)
+                var error = new Error(ex, applicationName)
                                 {
                                     RollupPerServer = rollupPerServer,
                                     CustomData = customData ?? new Dictionary<string, string>()
                                 };
+                setProperties?.Invoke(error);
+
+                // Globally apply logging filters
+                error.ApplyLoggingFilters();
 
                 if (GetIPAddress != null)
                 {

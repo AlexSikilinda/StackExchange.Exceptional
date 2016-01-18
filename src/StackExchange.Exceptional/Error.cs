@@ -3,18 +3,10 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Runtime.Serialization;
 using System.Text.RegularExpressions;
 using Jil;
 using StackExchange.Exceptional.Extensions;
-#if COREFX
-using Microsoft.AspNet.Http;
-using Microsoft.Extensions.Primitives;
-#else
-using System.Diagnostics;
-using System.Web;
-#endif
 
 namespace StackExchange.Exceptional
 {
@@ -23,7 +15,7 @@ namespace StackExchange.Exceptional
     /// </summary>
     public class Error
     {
-        internal const string CollectionErrorKey = "CollectionFetchError";
+        public const string CollectionErrorKey = "CollectionFetchError";
 
         /// <summary>
         /// Filters on form values *not * to log, because they contain sensitive data
@@ -81,7 +73,7 @@ namespace StackExchange.Exceptional
         /// <see cref="Microsoft.AspNet.Http.HttpContext"/> instance representing the HTTP 
         /// context during the exception.
         /// </summary>
-        public Error(Exception e, HttpContext context, string applicationName = null)
+        public Error(Exception e, string applicationName = null)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
@@ -109,37 +101,11 @@ namespace StackExchange.Exceptional
             CreationDate = DateTime.UtcNow;
             DuplicateCount = 1;
 
-            SetContextProperties(context);
-
             ErrorHash = GetHash();
         }
-
-        /// <summary>
-        /// Sets Error properties pulled from HttpContext, if present
-        /// </summary>
-        /// <param name="context">The HttpContext related to the request</param>
-        private void SetContextProperties(HttpContext context)
+        
+        internal void ApplyLoggingFilters()
         {
-            if (context == null) return;
-
-            var request = context.Request;
-            StatusCode = context.Response.StatusCode;
-
-#if COREFX
-            Func<IEnumerable<KeyValuePair<string, StringValues>>, NameValueCollection> tryGetCollection = col =>
-            {
-                var nvc = new NameValueCollection();
-                if (col == null) return nvc;
-                foreach (var i in col)
-                {
-                    foreach (var v in i.Value)
-                    {
-                        nvc.Add(i.Key, v);
-                    }
-                }
-                return nvc;
-            };
-
             Action<NameValueCollection, ConcurrentDictionary<string, string>> mask = (col, lookup) =>
             {
                 if (lookup.Count <= 0) return;
@@ -149,77 +115,16 @@ namespace StackExchange.Exceptional
                         col[k] = lookup[k];
                 }
             };
-
-            // TODO: Generate ServerVairables
-            //ServerVariables = tryGetCollection(r => r.ServerVariables);
-            QueryString = tryGetCollection(request.Query);
-            Form = tryGetCollection(request.Form);
+            RequestHeaders.Remove("Cookie");
             mask(Form, FormLogFilters);
-            Cookies = tryGetCollection(request.Cookies);
             mask(Cookies, CookieLogFilters);
-
-            RequestHeaders = tryGetCollection(
-                request.Headers.Where(i => string.Compare(i.Key, "Cookie", StringComparison.OrdinalIgnoreCase) != 0));
-#else
-            Func<Func<HttpRequest, NameValueCollection>, NameValueCollection> tryGetCollection = getter =>
-                {
-                    try
-                    {
-                        return new NameValueCollection(getter(request));
-                    }
-                    catch (Exception e)
-                    {
-                        Debug.WriteLine("Error parsing collection: " + e.Message);
-                        return new NameValueCollection {{CollectionErrorKey, e.Message}};
-                    }
-                };
-
-            ServerVariables = tryGetCollection(r => r.ServerVariables);
-            QueryString = tryGetCollection(r => r.QueryString);
-            Form = tryGetCollection(r => r.Form);
-            
-            // Filter form variables for sensitive information
-            if (FormLogFilters.Count > 0)
-            {
-                foreach (var k in FormLogFilters.Keys)
-                {
-                    if (Form[k] != null)
-                        Form[k] = FormLogFilters[k];
-                }
-            }
-
-            try
-            {
-                Cookies = new NameValueCollection(request.Cookies.Count);
-                for (var i = 0; i < request.Cookies.Count; i++)
-                {
-                    var name = request.Cookies[i].Name;
-                    string val;
-                    CookieLogFilters.TryGetValue(name, out val);
-                    Cookies.Add(name, val ?? request.Cookies[i].Value);
-                }
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine("Error parsing cookie collection: " + e.Message);
-            }
-
-            RequestHeaders = new NameValueCollection(request.Headers.Count);
-            foreach(var header in request.Headers.AllKeys)
-            {
-                // Cookies are handled above, no need to repeat
-                if (string.Compare(header, "Cookie", StringComparison.OrdinalIgnoreCase) == 0)
-                    continue;
-
-                if (request.Headers[header] != null)
-                    RequestHeaders[header] = request.Headers[header];
-            }
-#endif
         }
 
         internal void AddFromData(Exception exception)
         {
+            // ReSharper disable ConditionIsAlwaysTrueOrFalse
             if (exception.Data == null) return;
+            // ReSharper restore ConditionIsAlwaysTrueOrFalse
 
             // Historical special case
                 if (exception.Data.Contains("SQL"))
@@ -542,10 +447,7 @@ namespace StackExchange.Exceptional
         /// </summary>
         /// <param name="json">JSON representing an Error</param>
         /// <returns>The Error object</returns>
-        public static Error FromJson(string json)
-        {
-            return JSON.Deserialize<Error>(json);
-        }
+        public static Error FromJson(string json) => JSON.Deserialize<Error>(json);
 
         /// <summary>
         /// Serialization class in place of the NameValueCollection pairs

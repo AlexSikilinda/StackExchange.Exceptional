@@ -35,7 +35,6 @@ namespace Samples.Console
 
 #endif
 
-
             DisplayExceptionStats();
             PauseForInput();
 
@@ -46,7 +45,7 @@ namespace Samples.Console
             catch (Exception ex)
             {
                 // logged, but caught so we don't crash
-                ErrorStore.LogExceptionWithoutContext(ex);
+                ErrorStore.Default.Log(ex);
             }
 
             DisplayExceptionStats();
@@ -68,7 +67,7 @@ namespace Samples.Console
             var exception = e.ExceptionObject as Exception;
 
             if (exception != null)
-                ErrorStore.LogExceptionWithoutContext(exception);
+                ErrorStore.Default.Log(exception);
         }
 #endif
 

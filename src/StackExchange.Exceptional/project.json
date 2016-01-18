@@ -18,7 +18,7 @@
     "warningsAsErrors": true
   },
   "frameworks": {
-    "net45": {
+    "net451": {
       "compilationOptions": {
         "define": [ ]
       },
@@ -37,10 +37,9 @@
         "define": [ "COREFX" ]
       },
       "dependencies": {
-        "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
-        "Microsoft.Extensions.Configuration": "1.0.0-rc1-final",
-        "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
-        "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final",
+        "Microsoft.Extensions.Configuration": "1.0.0-*",
+        "Microsoft.Extensions.Configuration.Json": "1.0.0-*",
+        "Microsoft.Extensions.PlatformAbstractions": "1.0.0-*",
         "System.Runtime": "4.0.21-*",
         "System.Diagnostics.StackTrace": "4.0.1-*",
         "System.Collections": "4.0.11-*",

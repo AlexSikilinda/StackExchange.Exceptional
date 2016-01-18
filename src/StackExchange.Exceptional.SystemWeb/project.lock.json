@@ -1,0 +1,283 @@
+{
+  "locked": false,
+  "version": 2,
+  "targets": {
+    ".NETFramework,Version=v4.5.1": {
+      "Dapper/1.50.0-beta7": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core",
+          "System.Data",
+          "System.Xml"
+        ],
+        "compile": {
+          "lib/net45/Dapper.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Dapper.dll": {}
+        }
+      },
+      "Jil/2.13.0-beta1": {
+        "type": "package",
+        "dependencies": {
+          "Sigil": "4.5.1"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core",
+          "System.Runtime.Serialization"
+        ],
+        "compile": {
+          "lib/net45/Jil.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Jil.dll": {}
+        }
+      },
+      "Sigil/4.5.1": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net45/Sigil.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Sigil.dll": {}
+        }
+      },
+      "StackExchange.Exceptional/2.0.0-alpha1": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.1",
+        "dependencies": {
+          "Dapper": "1.50.0",
+          "Jil": "2.13.0-beta1"
+        },
+        "frameworkAssemblies": [
+          "System.Configuration",
+          "System.Data",
+          "System.Transactions",
+          "System.Web",
+          "System.Xml"
+        ]
+      }
+    },
+    ".NETFramework,Version=v4.5.1/win7-x86": {
+      "Dapper/1.50.0-beta7": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core",
+          "System.Data",
+          "System.Xml"
+        ],
+        "compile": {
+          "lib/net45/Dapper.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Dapper.dll": {}
+        }
+      },
+      "Jil/2.13.0-beta1": {
+        "type": "package",
+        "dependencies": {
+          "Sigil": "4.5.1"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core",
+          "System.Runtime.Serialization"
+        ],
+        "compile": {
+          "lib/net45/Jil.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Jil.dll": {}
+        }
+      },
+      "Sigil/4.5.1": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net45/Sigil.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Sigil.dll": {}
+        }
+      },
+      "StackExchange.Exceptional/2.0.0-alpha1": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.1",
+        "dependencies": {
+          "Dapper": "1.50.0",
+          "Jil": "2.13.0-beta1"
+        },
+        "frameworkAssemblies": [
+          "System.Configuration",
+          "System.Data",
+          "System.Transactions",
+          "System.Web",
+          "System.Xml"
+        ]
+      }
+    },
+    ".NETFramework,Version=v4.5.1/win7-x64": {
+      "Dapper/1.50.0-beta7": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core",
+          "System.Data",
+          "System.Xml"
+        ],
+        "compile": {
+          "lib/net45/Dapper.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Dapper.dll": {}
+        }
+      },
+      "Jil/2.13.0-beta1": {
+        "type": "package",
+        "dependencies": {
+          "Sigil": "4.5.1"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core",
+          "System.Runtime.Serialization"
+        ],
+        "compile": {
+          "lib/net45/Jil.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Jil.dll": {}
+        }
+      },
+      "Sigil/4.5.1": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net45/Sigil.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Sigil.dll": {}
+        }
+      },
+      "StackExchange.Exceptional/2.0.0-alpha1": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.5.1",
+        "dependencies": {
+          "Dapper": "1.50.0",
+          "Jil": "2.13.0-beta1"
+        },
+        "frameworkAssemblies": [
+          "System.Configuration",
+          "System.Data",
+          "System.Transactions",
+          "System.Web",
+          "System.Xml"
+        ]
+      }
+    }
+  },
+  "libraries": {
+    "StackExchange.Exceptional/2.0.0-alpha1": {
+      "type": "project",
+      "path": "../StackExchange.Exceptional/project.json"
+    },
+    "Dapper/1.50.0-beta7": {
+      "type": "package",
+      "sha512": "XdKAI6T+Tf2bXu9TG9TpkkVLTPfkOhohfS5d1edng3uczoNxSrZtlvhFqrOMq2Ko4omqQAXvbWMu0Fvlxnx4eA==",
+      "files": [
+        "Dapper.1.50.0-beta7.nupkg",
+        "Dapper.1.50.0-beta7.nupkg.sha512",
+        "Dapper.nuspec",
+        "lib/dnx451/Dapper.dll",
+        "lib/dnx451/Dapper.xml",
+        "lib/dotnet5.4/Dapper.dll",
+        "lib/dotnet5.4/Dapper.xml",
+        "lib/net40/Dapper.dll",
+        "lib/net40/Dapper.xml",
+        "lib/net45/Dapper.dll",
+        "lib/net45/Dapper.xml"
+      ]
+    },
+    "Jil/2.13.0-beta1": {
+      "type": "package",
+      "sha512": "LYnusA8e4iho/ZUPHNIpTIv9YaKNdkTDRoBI2u0mU81a6SGC4H+qwNCviWeYmZ2S7JU5HV/orV9s4ZApQCRD8A==",
+      "files": [
+        "Jil.2.13.0-beta1.nupkg",
+        "Jil.2.13.0-beta1.nupkg.sha512",
+        "Jil.nuspec",
+        "lib/dotnet5.2/Jil.dll",
+        "lib/dotnet5.2/Jil.xml",
+        "lib/dotnet5.4/Jil.dll",
+        "lib/dotnet5.4/Jil.xml",
+        "lib/net45/Jil.dll",
+        "lib/net45/Jil.xml"
+      ]
+    },
+    "Sigil/4.5.1": {
+      "type": "package",
+      "sha512": "fY1FgRaxf1thoiLM3PG33ize99QwEd1bGxbMHbWnkw4vvPpj2VZQLUZrwIowkEBmj6XQc+1SrJH1tA55atBj+w==",
+      "files": [
+        "lib/dotnet5.2/Sigil.dll",
+        "lib/dotnet5.2/Sigil.xml",
+        "lib/dotnet5.4/Sigil.dll",
+        "lib/dotnet5.4/Sigil.xml",
+        "lib/net20/Sigil.dll",
+        "lib/net20/Sigil.xml",
+        "lib/net30/Sigil.dll",
+        "lib/net30/Sigil.xml",
+        "lib/net35/Sigil.dll",
+        "lib/net35/Sigil.xml",
+        "lib/net40/Sigil.dll",
+        "lib/net40/Sigil.xml",
+        "lib/net45/Sigil.dll",
+        "lib/net45/Sigil.xml",
+        "Sigil.4.5.1.nupkg",
+        "Sigil.4.5.1.nupkg.sha512",
+        "Sigil.nuspec"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "": [
+      "StackExchange.Exceptional >= 2.0.0-*"
+    ],
+    ".NETFramework,Version=v4.5.1": [
+      "fx/System.Configuration >= 4.0.0",
+      "fx/System.Data >= 4.0.0",
+      "fx/System.Transactions >= 4.0.0",
+      "fx/System.Web >= 4.0.0",
+      "fx/System.Xml >= 4.0.0"
+    ]
+  }
+}

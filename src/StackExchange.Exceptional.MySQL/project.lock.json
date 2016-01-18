@@ -2,7 +2,7 @@
   "locked": false,
   "version": 2,
   "targets": {
-    ".NETFramework,Version=v4.5": {
+    ".NETFramework,Version=v4.5.1": {
       "Dapper/1.50.0-beta7": {
         "type": "package",
         "frameworkAssemblies": [
@@ -65,7 +65,7 @@
       },
       "StackExchange.Exceptional/2.0.0-alpha1": {
         "type": "project",
-        "framework": ".NETFramework,Version=v4.5",
+        "framework": ".NETFramework,Version=v4.5.1",
         "dependencies": {
           "Dapper": "1.50.0",
           "Jil": "2.13.0-beta1"
@@ -79,7 +79,7 @@
         ]
       }
     },
-    ".NETFramework,Version=v4.5/win7-x86": {
+    ".NETFramework,Version=v4.5.1/win7-x86": {
       "Dapper/1.50.0-beta7": {
         "type": "package",
         "frameworkAssemblies": [
@@ -142,7 +142,7 @@
       },
       "StackExchange.Exceptional/2.0.0-alpha1": {
         "type": "project",
-        "framework": ".NETFramework,Version=v4.5",
+        "framework": ".NETFramework,Version=v4.5.1",
         "dependencies": {
           "Dapper": "1.50.0",
           "Jil": "2.13.0-beta1"
@@ -156,7 +156,7 @@
         ]
       }
     },
-    ".NETFramework,Version=v4.5/win7-x64": {
+    ".NETFramework,Version=v4.5.1/win7-x64": {
       "Dapper/1.50.0-beta7": {
         "type": "package",
         "frameworkAssemblies": [
@@ -219,7 +219,7 @@
       },
       "StackExchange.Exceptional/2.0.0-alpha1": {
         "type": "project",
-        "framework": ".NETFramework,Version=v4.5",
+        "framework": ".NETFramework,Version=v4.5.1",
         "dependencies": {
           "Dapper": "1.50.0",
           "Jil": "2.13.0-beta1"
@@ -315,10 +315,10 @@
   "projectFileDependencyGroups": {
     "": [
       "Dapper >= 1.50.0-*",
-      "StackExchange.Exceptional >= 2.0.0-*",
-      "MySql.Data >= 6.9.8"
+      "MySql.Data >= 6.9.8",
+      "StackExchange.Exceptional >= 2.0.0-*"
     ],
-    ".NETFramework,Version=v4.5": [
+    ".NETFramework,Version=v4.5.1": [
       "fx/System.Configuration >= 4.0.0",
       "fx/System.Data >= 4.0.0",
       "fx/System.Transactions >= 4.0.0",

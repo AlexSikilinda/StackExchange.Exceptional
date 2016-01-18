@@ -4,7 +4,7 @@ using StackExchange.Exceptional.Extensions;
 
 namespace StackExchange.Exceptional.Pages
 {
-    internal class ErrorListPage : WebPage
+    public class ErrorListPage : WebPage
     {
         public override string PageTitle => "Error Log";
 

@@ -12,7 +12,7 @@ using System.Web;
 
 namespace StackExchange.Exceptional.Pages
 {
-    internal abstract class WebPage
+    public abstract class WebPage
     {
         public abstract string PageTitle { get; }
         public Error Error { get; set; }

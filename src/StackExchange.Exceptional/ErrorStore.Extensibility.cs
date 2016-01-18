@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using StackExchange.Exceptional.Extensions;
-#if COREFX
-using Microsoft.AspNet.Http;
-#else
-using System.Web;
-#endif
 
 namespace StackExchange.Exceptional
 {
@@ -64,7 +59,7 @@ namespace StackExchange.Exceptional
         /// <summary>
         /// Method to get custom data for an error for, will be call when custom data isn't already present
         /// </summary>
-        public static Action<Exception, HttpContext, Dictionary<string, string>> GetCustomData { get; set; }
+        public static Action<Exception, Dictionary<string, string>> GetCustomData { get; set; }
 
         /// <summary>
         /// Method of getting the IP address for the error, defaults to retrieving it from server variables
